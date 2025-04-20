@@ -1,9 +1,10 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import tailwindcss from '@tailwindcss/postcss'; // Correct package
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 import autoprefixer from 'autoprefixer';
-import path from 'path';
+// Import the correct package for PostCSS
+import tailwindcssPostcss from '@tailwindcss/postcss';
 
+// https://vite.dev/config/
 export default defineConfig({
   server: {
     port: 3000,
@@ -26,14 +27,9 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        tailwindcss('./tailwind.config.js'), // Point to your config
-        autoprefixer(),
+        tailwindcssPostcss,  // Use the PostCSS-specific package
+        autoprefixer,
       ],
-    },
-  },
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
     },
   },
 });
